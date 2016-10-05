@@ -1,0 +1,75 @@
+<style>
+  article {
+    margin: 5px 0;
+    background-color: white;
+    width: 100%;
+  }
+</style>
+<article class="md-whiteframe-4dp" layout="row" ng-controller="WorksController">
+  <div class="md-whiteframe-4dp" style="margin:15px;max-height:none;" flex="30" layout="column">
+    <md-list class="whiteParent">
+      <md-subheader class="md-no-sticky">
+        List of {{user.first_name}}'s work
+      </md-subheader>
+      <md-list-item ng-repeat="work in works"
+       class="md-1-line" ng-click="select('works',work.work_name)">
+        <h3>
+          {{work.work_name}}
+        </h3>
+      </md-list-item>
+    </md-list>
+  </div>
+  <div class="md-whiteframe-4dp" flex="70" style="margin:15px;margin-left:0px;max-height:none;">
+
+    <md-list ng-if="selected.works==null">
+      <md-subheader>
+        <h2 style="line-height:123%;">
+          A collection of works I've done.
+          Make a selection from the list to see what I've been up to!
+        </h2>
+      </md-subheader>
+    </md-list>
+    <div ng-repeat="work in works" ng-if="selected.works==work.work_name">
+      <md-list>
+        <md-subheader>
+          <h2>{{work.work_name}}</h2>
+        </md-subheader>
+      </md-list>
+      <div style="padding:0 15px;">
+        <h4>
+          <i>
+            {{work.work_summ}}
+          </i>
+        </h4>
+        <p>
+          {{work.work_desc}}
+        </p>
+        <md-grid-list
+        style="margin:0 10px"
+        md-cols="4"
+        md-cols-md="4"
+        md-row-height="4:3" md-gutter-md="8px" md-gutter="8px"
+        >
+          <md-grid-tile md-ink-ripple="#FFFFFF" ng-repeat="photo in work.album.pictures"
+          style="background-color:black;background-image:url('{{photo|Photo:null:'300'}}');
+          background-size:cover;background-repeat:no-repeat;background-position:center;">
+            <md-tooltip>
+              {{photo.picture_name}}
+            </md-tooltip>
+            <a href="{{photo|Photo}}" style="width:100%;height:100%;"
+            data-lightbox="_works_{{photo.album_name}}" data-title="<font
+            style='font-size:15px;padding-right:10px;'>{{photo.picture_name}}
+            </font> <i>{{photo.picture_summ}}</i>">
+            </a>
+          </md-grid-tile>
+        </md-grid-list>
+        <ul>
+          <li ng-repeat="file in work.files">
+            <a href="./php/?content=file&user_id={{file.user_id}}&filename={{file.file_path}}&works_name={{file.work_name}}">{{file.file_name}}</a>
+            {{file.file_summ}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</article>

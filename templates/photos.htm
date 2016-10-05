@@ -1,0 +1,51 @@
+<style>
+  article {
+    margin: 5px 0;
+    background-color: white;
+    width: 100%;
+  }
+</style>
+<article class="md-whiteframe-4dp" layout="row" ng-controller="PhotosController">
+  <md-content class="md-whiteframe-4dp" style="margin:15px;" flex="30">
+    <md-list class="whiteParent">
+      <md-subheader class="md-no-sticky">
+        List of {{user.first_name}}'s albums
+      </md-subheader>
+      <md-list-item ng-repeat="album in albums"
+       class="md-1-line" ng-click="select('photos',album.album_name)">
+        <h3>
+          {{album.album_name}}
+        </h3>
+      </md-list-item>
+    </md-list>
+  </md-content>
+  <md-content class="md-whiteframe-4dp" flex="70" style="margin:15px;margin-left:0px;">
+    <md-list ng-if="selected.photos==null">
+      <md-subheader>
+        <h2 style="line-height:123%;">
+          All the photos albums associated with my profile.
+        </h2>
+      </md-subheader>
+    </md-list>
+    <md-list ng-repeat="album in albums" ng-if="selected.photos==album.album_name">
+      <md-subheader>
+        <h2>{{album.album_name}}</h2>
+      </md-subheader>
+      <md-grid-list
+      style="margin:0 10px"
+      md-cols="3"
+      md-cols-md="3"
+      md-row-height="4:3" md-gutter-md="8px" md-gutter="8px"
+      >
+        <md-grid-tile md-ink-ripple="#FFFFFF" ng-repeat="photo in album.pictures" style="background-color:black;background-image:url('{{photo|Photo:null:'300'}}');background-size:cover;background-repeat:no-repeat;background-position:center;">
+          <md-tooltip>
+            {{photo.picture_name}}
+          </md-tooltip>
+          <a href="{{photo|Photo}}" style="width:100%;height:100%;" data-lightbox="{{photo.album_name}}" data-title="<font style='font-size:15px;padding-right:10px;'>{{photo.picture_name}}</font> <i>{{photo.picture_summ}}</i>">
+          </a>
+        </md-grid-tile>
+      </md-grid-list>
+    </md-list>
+
+  </md-content>
+</article>

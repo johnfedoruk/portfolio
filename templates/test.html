@@ -1,0 +1,162 @@
+
+<html>
+  <head>
+    <title>John A. Fedoruk</title>
+    <style>
+/*
+    html, body {
+
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      height: 100%;
+    }
+    body {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }*/
+
+
+      html,body {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      html {
+        height:100%;
+      }
+      body {
+        background-color:rgba(0,255,0,0.5);
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      main {
+        background-color: rgba(0,0,255,0.5) !important;
+      }
+      header, footer {
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4e6fb2+0,3b5998+35,3b5998+75,4e6fb2+100 */
+        background: #4e6fb2; /* Old browsers */
+        background: -moz-linear-gradient(top,  #4e6fb2 0%, #3b5998 35%, #3b5998 75%, #4e6fb2 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  #4e6fb2 0%,#3b5998 35%,#3b5998 75%,#4e6fb2 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  #4e6fb2 0%,#3b5998 35%,#3b5998 75%,#4e6fb2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e6fb2', endColorstr='#4e6fb2',GradientType=0 ); /* IE6-9 */
+        color: white;
+        text-align: left;
+      }
+      header {
+        width: 100%;
+        z-index: 9999;
+      }
+      footer {
+        height:50px;
+      }
+      #title {
+       	height:23px;
+       	margin:5px;
+        margin-left: 100px;
+       	background-size:contain;
+       	background-repeat:no-repeat;
+       	background-image:url(data:image/png;base64,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);
+      }
+      main {
+        margin: 0;
+        width: 960px;
+        min-width: 960px;
+        max-width: 960px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div id="title">
+       </div>
+    </header>
+    <div style="padding:20px">
+      <h1>Sticky Footer with Flexbox</h1>
+      <p id="cont"></p>
+    </div>
+    <div style="flex:1;background:purple;">
+    </div>
+    <footer>
+      footer
+    </footer>
+  </body>
+</html>
+
+<!--
+<html>
+  <head>
+    <style>
+      html, body {
+
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        height: 100%;
+      }
+      body {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      header, footer {
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4e6fb2+0,3b5998+35,3b5998+75,4e6fb2+100 */
+        background: #4e6fb2; /* Old browsers */
+        background: -moz-linear-gradient(top,  #4e6fb2 0%, #3b5998 35%, #3b5998 75%, #4e6fb2 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  #4e6fb2 0%,#3b5998 35%,#3b5998 75%,#4e6fb2 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  #4e6fb2 0%,#3b5998 35%,#3b5998 75%,#4e6fb2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e6fb2', endColorstr='#4e6fb2',GradientType=0 ); /* IE6-9 */
+        color: white;
+        text-align: left;
+      }
+      header {
+        position: fixed;
+        width: 100%;
+        z-index: 9999;
+      }
+      #notFooter {
+        padding: 20px;
+      }
+      footer {
+        height: 100px;
+      }
+      #title {
+        height:23px;
+        margin:5px;
+        margin-left: 100px;
+        background-size:contain;
+        background-repeat:no-repeat;
+        background-image:url(data:image/png;base64,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);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div id="title">
+      </div>
+    </header>
+    <div id="notFooter">
+      <h1>Sticky Footer with Flexbox</h1>
+      <p id="cont"></p>
+    </div>
+    <div style="flex:1;background:purple;">
+    </div>
+    <footer class="footer">
+      Footer
+    </footer>
+
+  </body>
+</html>
+
+
+<script>
+  var str = "";
+  for(i=0;i<20;i++)
+    str += "hello<br>";
+  str+="hello";
+  document.getElementById("cont").innerHTML=str;
+  </script>
+-->

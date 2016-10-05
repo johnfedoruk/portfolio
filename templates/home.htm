@@ -1,0 +1,205 @@
+<div id="content" style="position:relative;overflow:none;">
+  <div id="{{sidebar_id}}" ng-controller="AboutController"
+  style="min-width:420px;max-width:420px;float:left;position:static;z-index:1;">
+    <span layout="column">
+      <article class="md-whiteframe-4dp">
+        <h1 ng-click="open('about')">
+          About
+        </h1>
+        <section ng-if="job_titles.length>0">
+          <h2>
+            Job titles
+          </h2>
+          <ul>
+            <li ng-repeat="jobs in job_titles">
+              {{jobs.job_title}}
+            </li>
+          </ul>
+        </section>
+        <section ng-if="employment_histories.length>0">
+          <h2>
+            Work History
+          </h2>
+          <ul>
+            <li ng-repeat="emp in employment_histories">
+              {{emp.roll}}
+              <a href="{{emp.employer_site}}" target="_blank">{{emp.employer_name}}</a>
+              <br ng-if="emp.start_date||emp.end_date">
+              <i>{{emp.start_date | String2Date : emp.end_date }}</i>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a href="./php/?content=file&user_id=1&filename=john_fedoruk_resume_2016.pdf&works_name=resume">
+                Resume
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section ng-if="projects.length>0">
+          <h2>
+            Projects
+          </h2>
+          <ul>
+            <li ng-repeat="project in projects">
+              <a href="{{project.project_path}}" target="_blank">{{project.project_name}}</a>
+              <br ng-if="project.start_date||project.end_date">
+              <i>{{project.start_date | String2Date : project.end_date }}</i>
+            </li>
+          </ul>
+        </section>
+        <section ng-if="education.length>0">
+          <h2>
+            Education
+          </h2>
+          <ul>
+            <li ng-repeat="ed in education">
+              {{ed.ed_title}}
+              <a href="{{ed.school_site}}">{{ed.school_name}}</a>
+              <br ng-if="ed.start_date||ed.end_date">
+              <i>{{ed.start_date | String2Date : ed.end_date }}</i>
+            </li>
+          </ul>
+        </section>
+        <section ng-if="residence.length>0">
+          <h2>
+            Residence
+          </h2>
+          <ul>
+            <li ng-repeat="res in residence">
+              <span ng-if="res.district!=null&&res.district.length>0">
+                {{res.district}},
+              </span>
+              <span ng-if="res.city!=null&&res.city.length>0">
+                {{res.city}},
+              </span>
+              <span ng-if="res.province!=null&&res.province.length>0">
+                {{res.province}}
+              </span>
+              <span ng-if="res.area_code!=null&&res.area_code.length>0">
+                {{res.area_code}}.
+              </span>
+              <span ng-if="res.country!=null&&res.country.length>0">
+                {{res.country}}
+              </span>
+              <br ng-if="res.start_date||res.end_date">
+              <i>{{res.start_date | String2Date : res.end_date }}</i>
+            </li>
+          </ul>
+        </section>
+      </article>
+      <article class="md-whiteframe-4dp" ng-controller="PhotosController"
+      ng-hide="photos.length<1">
+        <h1 ng-click="open('photos')">
+          Photos
+        </h1>
+        <section style="padding-top:5px">
+          <md-grid-list
+          md-cols="{{photos.length<3?photos.length:3}}"
+          md-cols-md="{{photos.length<3?photos.length:3}}"
+          md-row-height="4:4" md-gutter-md="8px" md-gutter="8px"
+          >
+            <md-grid-tile md-ink-ripple="#FFFFFF" ng-repeat="photo in photos"
+            style="background-color:black;background-image:url('{{photo|Photo:null:'300'}}');
+            background-size:cover;background-repeat:no-repeat;background-position:center;">
+              <md-tooltip>
+                {{photo.album_name}}
+              </md-tooltip>
+              <a href="{{photo|Photo}}" style="width:100%;height:100%;"
+              data-lightbox="_{{photo.album_name}}_{{photo.picture_name}}"
+              data-title="<font style='font-size:15px;padding-right:10px;'>
+              {{photo.picture_name}}</font> <i>{{photo.picture_summ}}</i>">
+              </a>
+              <a ng-repeat="p in getAlbumPictures(photo.album_name)"
+              ng-if="p.picture_name!=photo.picture_name" style="display:none;"
+              href="{{p|Photo}}" style="width:100%;height:100%;"
+              data-lightbox="_{{photo.album_name}}_{{photo.picture_name}}"
+              data-title="<font style='font-size:15px;padding-right:10px;'>
+              {{p.picture_name}}</font><i>{{p.picture_summ}}</i>">
+              </a>
+            </md-grid-tile>
+          </md-grid-list>
+        </section>
+      </article>
+      <article class="md-whiteframe-4dp" ng-controller="ContactController"
+      ng-hide="phone_numbers.length<1&&emails.length<1">
+        <h1 ng-click="open('contact')">
+          Contact
+        </h1>
+        <section ng-if="phone_numbers.length>0">
+          <h2>
+            Phone
+          </h2>
+          <ul>
+            <li ng-repeat="phone_number in phone_numbers">
+              {{phone_number.phone_number}}
+            </li>
+          </ul>
+        </section>
+        <section ng-if="emails.length>0">
+          <h2>
+            Email
+          </h2>
+          <ul>
+            <li ng-repeat="email in emails">
+              {{email.email}}
+            </li>
+          </ul>
+        </section>
+      </article>
+    </span>
+  </div>
+
+  <span layout="column" ng-controller="WorksController" style="width:530px;
+  max-width:530px;margin-left:430px;">
+    <article class="md-whiteframe-4dp" ng-repeat="work in works">
+      <h2 style="padding: 10px 20px">
+        {{work.work_name}}
+      </h2>
+      <section ng-if="work.work_desc!=null&&work.work_desc.length>0">
+        <h3>
+          Description
+        </h3>
+        {{work.work_desc}}
+      </section>
+      <section ng-if="work.album!=null&&work.album.pictures.length>0">
+        <h3>
+          Photos
+        <h3>
+          <md-grid-list
+          md-cols="{{work.album.pictures.length<3?work.album.pictures.length:3}}"
+          md-cols-md="{{work.album.pictures.length<3?work.album.pictures.length:3}}"
+          md-row-height="4:3" md-gutter-md="8px" md-gutter="8px"
+          >
+            <md-grid-tile md-ink-ripple="#FFFFFF" ng-repeat="photo in work.album.pictures"
+            style="background-color:black;background-image:url('{{photo|Photo:null:'300'}}');
+            background-size:cover;background-repeat:no-repeat;background-position:center;">
+              <md-tooltip>
+                {{photo.picture_name}}
+              </md-tooltip>
+              <a href="{{photo|Photo}}" style="width:100%;height:100%;"
+              data-lightbox="{{photo.album_name}}" data-title="<font style=
+              'font-size:15px;padding-right:10px;'>{{photo.picture_name}}</font>
+              <i>{{photo.picture_summ}}</i>">
+              </a>
+            </md-grid-tile>
+          </md-grid-list>
+      </section>
+      <section ng-if="work.files!=null&&work.files.length>0">
+        <h3>
+          Files
+        </h3>
+        <ul>
+          <li ng-repeat="file in work.files">
+            <a href="./php/?content=file&user_id={{file.user_id}}&
+            filename={{file.file_path}}&works_name={{file.work_name}}">
+              {{file.file_name}}
+            </a>
+            {{file.file_summ}}
+          </li>
+        </ul>
+      </section>
+    </article>
+  </span>
+
+</div>

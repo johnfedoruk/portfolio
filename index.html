@@ -1,0 +1,263 @@
+<html>
+  <head>
+    <title>John A. Fedoruk</title>
+    <meta name="description" content="John A. Fedoruk, B.Sc., Software Engineer's online portfolio">
+    <!-- Angular Material style sheet -->
+	  <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">-->
+	  <link rel="stylesheet" href="./assets/libraries/angular/angular.css"> <!-- local version -->
+    <!-- JQuery stuff -->
+    <!--<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>-->
+    <script src="./assets/libraries/jquery/jquery.js"></script> <!-- local version -->
+    <!--<script src="http://leafo.net/sticky-kit/src/sticky-kit.js"></script>-->
+    <script src="./assets/libraries/sticky-kit/sticky-kit.js"></script> <!-- local version -->
+    <link rel="stylesheet" href="./assets/libraries/lightbox2-master/src/css/lightbox.css" >
+    <!--<link rel="stylesheet" href="//owlgraphic.com/owlcarousel/owl-carousel/owl.carousel.css">-->
+    <link rel="stylesheet" href="./assets/libraries/owlcarousel/carousel.css" >
+    <!--<link rel="stylesheet" href="//owlgraphic.com/owlcarousel/owl-carousel/owl.theme.css">-->
+    <link rel="stylesheet" href="./assets/libraries/owlcarousel/style.css" >
+    <!--<script src="//owlgraphic.com/owlcarousel/owl-carousel/owl.carousel.js"></script>-->
+    <script src="./assets/libraries/owlcarousel/carousel.js"></script>
+
+    <style>
+      html,body {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      html {
+        height:100%;
+      }
+      body {
+        min-height: 100%;
+        height: auto;
+      }
+      main {
+      }
+      header, footer {
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4e6fb2+0,3b5998+35,3b5998+75,4e6fb2+100 */
+        background: #4e6fb2; /* Old browsers */
+        background: -moz-linear-gradient(top,  #4e6fb2 0%, #3b5998 35%, #3b5998 75%, #4e6fb2 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  #4e6fb2 0%,#3b5998 35%,#3b5998 75%,#4e6fb2 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  #4e6fb2 0%,#3b5998 35%,#3b5998 75%,#4e6fb2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e6fb2', endColorstr='#4e6fb2',GradientType=0 ); /* IE6-9 */
+        color: white;
+        text-align: left;
+      }
+      header {
+        position: fixed;
+        width: 100%;
+        z-index: 9999;
+      }
+      footer {
+        bottom: 0px !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+        height:50px;
+      }
+      #title {
+       	height:23px;
+       	margin:5px;
+        margin-left: 100px;
+       	background-size:contain;
+       	background-repeat:no-repeat;
+       	background-image:url(data:image/png;base64,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);
+      }
+      main {
+        margin: 80px 0;
+        width: 960px;
+        min-width: 960px;
+        max-width: 960px;
+        height: auto;
+      }
+      #cover {
+        background-color: white;
+        width: 100%;
+        min-height: 200px;
+        position: relative;
+        margin: 5px 0;
+      }
+      .coverPhoto {
+        min-height: 200px;
+        max-height: 300px;
+      }
+      #cover a {
+		z-index: 0;
+	  }
+      #profilePic {
+        width: 150px;
+        height: 200px;
+        position: absolute;
+        bottom: 20px;
+        left: 50px;
+        background-color: white;
+        padding: 7px;
+        outline: 1px solid lightgray;
+      }
+      #profileName {
+        position: absolute;
+        bottom: 60px;
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        left: 250px;
+      }
+      #coverNav button {
+        border-left: 1px solid rgba(128,128,128,0.2);
+        font-size: 17px;
+        font-weight: bolder;
+        border-radius: 0;
+        padding: 10px 30px;
+        margin: 0;
+      }
+      header #title {
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        font-weight: bold;
+        padding: 10px;
+        font-size: 25px;
+      }
+      #content {
+        width: 100%;
+      }
+      a {
+        z-index:100;
+        text-decoration: none;
+        color: #3b5998;
+      }
+      li {
+        margin-bottom: 5px;
+      }
+      article {
+        margin: 5px 0;
+        width: 100%;
+      }
+      article h1 {
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+      article section {
+        margin: 20px;
+        border-top: 1px solid lightgray;
+      }
+      article section:nth-child(1), article section:nth-child(2){
+        border-top: 0px solid lightgray;
+      }
+      .lightboxOverlay, #lightboxOverlay{
+      min-width: 100% !important;
+      }
+      .lightbox, #lightbox {
+      	display: none;
+      }
+      #owl-demo .item img{
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body ng-app="MyApp" ng-controller="MainController" layout="column">
+    <header>
+    	<div id="title">
+	  </div>
+    </header>
+    <div layout="row" flex>
+      <span flex>
+      </span>
+      <main>
+        <div id="cover" class="md-whiteframe-4dp" layout="column" ng-controller="PhotosController">
+          <div ng-if="photos.length>0">
+            <!-- Lightbox start --
+            <a md-ink-ripple="#FFFFFF" href="{{getAlbumPictures('Cover Photos')[0]|Photo}}"
+            data-lightbox="Cover Photo" data-title="{{getAlbumPictures('Cover Photos')[0].picture_name}}">
+            	<img id="coverPhoto" ng-src="{{getAlbumPictures('Cover Photos')[0]|Photo:'960'}}" width="100%" />
+            </a>
+            <a ng-repeat="picture in getAlbumPictures('Cover Photos')" ng-if="$index>0"
+            href="{{picture|Photo}}" data-lightbox="Cover Photo" data-title="{{picture.picture_name}}"
+            style="display:none;">
+            </a>
+            !-- Lightbox end -->
+            <!-- Carousel start -->
+            <div id="owl-demo" class="owl-carousel owl-theme">
+              <img ng-repeat="picture in getAlbumPictures('Cover Photos')"
+              class="item coverPhoto" ng-src="{{picture|Photo:'960'}}" width="100%" />
+            </div>
+            <!-- Carousel end -->
+            <div id="profilePic" md-ink-ripple="#FFFFFF" class="md-whiteframe-4dp">
+              <a href="{{getAlbumPictures('Profile Photos')[0]|Photo}}" data-lightbox="Profile Photo"
+              data-title="{{getAlbumPictures('Profile Photos')[0].picture_name}}">
+                <img ng-src="{{getAlbumPictures('Profile Photos')[0]|Photo:'150':'200'}}" />
+              </a>
+              <a ng-repeat="picture in getAlbumPictures('Profile Photos')" ng-if="$index>0" href="{{picture|Photo}}"
+              data-lightbox="Profile Photo" data-title="{{picture.picture_name}}" style="display:none;">
+              </a>
+            </div>
+            <div id="profileName">
+              {{user.first_name | FullName : user.middle_name : user.last_name}}
+            </div>
+            <div id="coverNav" layout="row"div>
+              <span style="width:200px;">
+              </span>
+              <span flex>
+              </span>
+              <md-button ng-click="open('home')">
+                Home
+              </md-button>
+              <md-button ng-click="open('about')">
+                About
+              </md-button>
+              <md-button ng-click="open('photos')">
+                Photos
+              </md-button>
+              <md-button ng-click="open('works')">
+                Works
+              </md-button>
+              <md-button ng-click="open('contact')">
+                Contact
+              </md-button>
+            </div>
+          </div>
+        </div>
+        <div ng-view>
+        </div>
+      </main>
+      <span flex>
+      </span>
+    </div>
+    <footer>
+      <h3 style="padding-top:15px;padding-left:100px;margin:0;">
+        Copyright &copy; {{currDate|date:"yyyy"}}
+        <a href="https://wpgit.ca" style="color:white;"><u>WPG I.T.</u></a>
+      </h3>
+    </footer>
+  </body>
+</html>
+<script src="./assets/libraries/lightbox2-master/src/js/lightbox.js"></script>
+<!-- Angular Material requires Angular.js Libraries -->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>-->
+<script src="./assets/libraries/angular/angular.min.js"></script> <!-- local version -->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>-->
+<script src="./assets/libraries/angular/angular-animate.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>-->
+<script src="./assets/libraries/angular/angular-aria.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>-->
+<script src="./assets/libraries/angular/angular-messages.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>-->
+<script src="./assets/libraries/angular/angular-route.js"></script>
+<!-- Angular Material Library -->
+<script src="./assets/libraries/angular-material/angular-material.min.js"></script>
+<!-- Angular Material Icons -->
+<script src="./assets/libraries/angular-material-icons/angular-material-icons.min.js"></script>
+<!-- App files -->
+<script src="./js/app.js"></script>
+<script src="./js/services/works.js"></script>
+<script src="./js/services/photos.js"></script>
+<script src="./js/services/about.js"></script>
+<script src="./js/services/contact.js"></script>
+<script src="./js/services/user.js"></script>
+<script src="./js/controllers/main.js"></script>
+<script src="./js/controllers/works.js"></script>
+<script src="./js/controllers/photos.js"></script>
+<script src="./js/controllers/about.js"></script>
+<script src="./js/controllers/contact.js"></script>
+<script src="./js/filters/str2date.js"></script>
+<script src="./js/filters/fullname.js"></script>
+<script src="./js/filters/photo.js"></script>
+<script src="./js/routers/router.js"></script>

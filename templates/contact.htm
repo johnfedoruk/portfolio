@@ -1,0 +1,61 @@
+<style>
+  article {
+    margin: 5px 0;
+    background-color: white;
+    width: 100%;
+  }
+</style>
+<article class="md-whiteframe-4dp" layout="row" ng-controller="ContactController">
+  <md-content class="md-whiteframe-4dp" style="margin:15px;" flex="30">
+    <md-list class="whiteParent">
+      <md-subheader class="md-no-sticky">
+        List of {{user.first_name}}'s contact info
+      </md-subheader>
+      <md-list-item class="md-1-line" ng-click="select('contact','phone')">
+        <h3>
+          Phone
+        </h3>
+      </md-list-item>
+      <md-list-item class="md-1-line" ng-click="select('contact','email')">
+        <h3>
+          Email
+        </h3>
+      </md-list-item>
+    </md-list>
+  </md-content>
+  <md-content class="md-whiteframe-4dp" flex="70" style="margin:15px;margin-left:0px;">
+
+    <md-list ng-if="selected.contact==null">
+      <md-subheader>
+        <h2>Here's how you can get ahold of me with any important secrets.</h2>
+      </md-subheader>
+    </md-list>
+
+    <md-list ng-if="selected.contact=='phone'">
+      <md-subheader>
+        <h2>Phone Numbers</h2>
+      </md-subheader>
+      <md-list-item class="md-1-line" ng-repeat="phone_number in phone_numbers">
+        <div class="md-list-item-text" layout="column">
+          <b>
+            {{phone_number.phone_number}}
+          </b>
+        </div>
+      </md-list-item>
+    </md-list>
+
+    <md-list ng-if="selected.contact=='email'">
+      <md-subheader>
+        <h2>Email Addresses</h2>
+      </md-subheader>
+      <md-list-item class="md-1-line" ng-repeat="email in emails">
+        <div class="md-list-item-text" layout="column">
+          <b>
+            {{email.email}}
+          </b>
+        </div>
+      </md-list-item>
+    </md-list>
+
+  </md-content>
+</article>

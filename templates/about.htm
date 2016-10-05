@@ -1,0 +1,152 @@
+<style>
+  article {
+    margin: 5px 0;
+    background-color: white;
+    width: 100%;
+  }
+</style>
+<article class="md-whiteframe-4dp" layout="row" ng-controller="AboutController">
+  <md-content class="md-whiteframe-4dp" style="margin:15px;" flex="30">
+    <md-list class="whiteParent">
+      <md-subheader class="md-no-sticky">
+        List of {{user.first_name}}'s employability info
+      </md-subheader>
+      <md-list-item class="md-1-line" ng-click="select('about','job_titles')">
+        <h3>
+          Job titles
+        </h3>
+      </md-list-item>
+      <md-list-item class="md-1-line" ng-click="select('about','employment_histories')">
+        <h3>
+          Employment History
+        </h3>
+      </md-list-item>
+      <md-list-item class="md-1-line" ng-click="select('about','education')">
+        <h3>
+          Education
+        </h3>
+      </md-list-item>
+      <md-list-item class="md-1-line" ng-click="select('about','residence')">
+        <h3>
+          Residence
+        </h3>
+      </md-list-item>
+      <md-list-item class="md-1-line" ng-click="select('about','projects')">
+        <h3>
+          Projects
+        </h3>
+      </md-list-item>
+    </md-list>
+  </md-content>
+  <md-content class="md-whiteframe-4dp" flex="70" style="margin:15px;margin-left:0px;">
+
+    <md-list ng-if="selected.about==null">
+      <md-subheader>
+        <h2 style="line-height:123%;">
+          All of the most basic information about my employability.
+        </h2>
+      </md-subheader>
+    </md-list>
+
+    <md-list ng-if="selected.about=='job_titles'">
+      <md-subheader>
+        <h2>Job Titles</h2>
+      </md-subheader>
+      <md-list-item class="md-1-line" ng-repeat="job_title in job_titles">
+        <h4>
+          {{job_title.job_title}}
+        </h4>
+      </md-list-item>
+    </md-list>
+
+    <md-list ng-if="selected.about=='employment_histories'">
+      <md-subheader>
+        <h2>Employment History</h2>
+      </md-subheader>
+      <md-list-item class="md-2-line" ng-repeat="emp in employment_histories">
+        <div class="md-list-item-text" layout="column">
+          <b>
+            {{emp.roll}}
+          </b>
+          <p>
+            <a href="{{employment_history.employer_site}}" target="_blank">
+              {{emp.employer_name}}
+            </a>
+          </p>
+          <i>
+            {{emp.start_date | String2Date : emp.end_date }}
+          </i>
+        </div>
+      </md-list-item>
+    </md-list>
+
+    <md-list ng-if="selected.about=='education'">
+      <md-subheader>
+        <h2>Education</h2>
+      </md-subheader>
+      <md-list-item class="md-2-line" ng-repeat="ed in education">
+        <div class="md-list-item-text" layout="column">
+          <b>
+            {{ed.ed_title}}
+          </b>
+          <p>
+            <a href="{{ed.school_site}}" target="_blank">
+              {{ed.school_name}}
+            </a>
+          </p>
+          <i>
+            {{ed.start_date | String2Date : ed.end_date }}
+          </i>
+        </div>
+      </md-list-item>
+    </md-list>
+
+    <md-list ng-if="selected.about=='residence'">
+      <md-subheader>
+        <h2>Residence</h2>
+      </md-subheader>
+      <md-list-item class="md-3-line" ng-repeat="res in residence">
+        <div class="md-list-item-text" layout="column">
+          <div>
+            <span ng-if="res.district!=null&&res.district.length>0">
+              {{res.district}},
+            </span>
+            <span ng-if="res.city!=null&&res.city.length>0">
+              {{res.city}},
+            </span>
+            <span ng-if="res.province!=null&&res.province.length>0">
+              {{res.province}}.
+            </span>
+            <span ng-if="res.country!=null&&res.country.length>0">
+              {{res.country}}.
+            </span>
+          </div>
+          <span ng-if="res.area_code!=null&&res.area_code.length>0">
+            {{res.area_code}}.
+          </span>
+          <i>{{res.start_date | String2Date : res.end_date }}</i>
+        </div>
+      </md-list-item>
+    </md-list>
+
+    <md-list ng-if="selected.about=='projects'">
+      <md-subheader>
+        <h2>Projects</h2>
+      </md-subheader>
+      <md-list-item class="md-3-line" ng-repeat="pro in projects">
+        <div class="md-list-item-text" layout="column">
+          <a href="{{pro.project_path}}" target="_blank">
+            <b>
+              {{pro.project_name}}
+            </b>
+          </a>
+          <p>
+            {{project_desc}}
+          </p>
+          <i>{{pro.start_date | String2Date : pro.end_date }}</i>
+        </div>
+      </md-list-item>
+    </md-list>
+
+  </md-content>
+</article>
